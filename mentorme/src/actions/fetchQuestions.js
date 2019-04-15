@@ -9,7 +9,7 @@ export const fecthQuestions = () => dispatch => {
   dispatch({type: FETCH_QUESTIONS_START});
 
   axiosWithAuth()
-    .get('http://localhost:5000//api/questions')
+    .get('http://localhost:5000/api/questions')
     .then(res => dispatch({type: FETCH_QUESTIONS_SUCCESS, payload: res.data}))
     .catch(err =>
       dispatch({type: FETCH_QUESTIONS_FAILURE, payload: err.response})

@@ -1,8 +1,8 @@
 import React from 'react';
-import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 import './Login.css';
 
-const Login = props => {
+const Register = props => {
   return (
     <div className="Login">
       <div className="content">
@@ -13,10 +13,10 @@ const Login = props => {
       </div>
       <div className="container">
         <div className="logo" />
-        <LoginForm {...props} />
+        <RegisterForm {...props} />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;

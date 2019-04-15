@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {logUser} from '../actions';
+import {regUser} from '../actions';
 
 import './LoginForm.css';
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
   state = {
     credentials: {
-      username: '',
+      handle: '',
+      email: '',
       password: ''
     },
     errors: {}
   };
+
   onChange = e => {
     e.persist();
     this.setState(prevState => ({
@@ -25,9 +27,17 @@ class LoginForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    if (this.state.credentials.username === '') {
+
+    if (this.state.credentials.handle === '') {
       this.setState({
-        errors: {username: 'Username is required'}
+        errors: {handle: 'Username is required'}
+      });
+      return;
+    }
+
+    if (this.state.credentials.email === '') {
+      this.setState({
+        errors: {email: 'Email is required'}
       });
       return;
     }
@@ -39,31 +49,46 @@ class LoginForm extends Component {
       return;
     }
 
-    this.props.logUser(this.state.credentials);
-    this.props.history.push('/questions');
+    this.props.regUser(this.state.credentials);
+    this.props.history.push('/singin');
   };
   render() {
     return (
       <div onSubmit={this.onSubmit} className="form">
         <div className="img-left" />
         <div className="form-content">
-          <h2>Sign in</h2>
+          <h2>Register</h2>
           <form>
             <div className="form-item">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="handle">Username</label>
               <input
-                className={`${this.state.errors.username ? 'is-invalid' : ''}`}
+                className={`${this.state.errors.handle ? 'is-invalid' : ''}`}
                 onChange={this.onChange}
                 type="text"
-                name="username"
+                name="handle"
                 placeholder="Enter username..."
-                value={this.state.credentials.username}
-                error={this.state.errors.username}
+                value={this.state.credentials.handle}
+                error={this.state.errors.handle}
               />
-              {this.state.errors.username && (
-                <p className="error-message-username">
-                  {this.state.errors.username}
+              {this.state.errors.handle && (
+                <p className="error-message-handle">
+                  {this.state.errors.handle}
                 </p>
+              )}
+            </div>
+            <div className="form-item">
+              <label htmlFor="email">Email</label>
+              <input
+                className={`${this.state.errors.email ? 'is-invalid' : ''}`}
+                onChange={this.onChange}
+                type="email"
+                name="email"
+                placeholder="Enter email..."
+                value={this.state.credentials.email}
+                error={this.state.errors.email}
+              />
+              {this.state.errors.email && (
+                <p className="error-message-email">{this.state.errors.email}</p>
               )}
             </div>
             <div className="form-item">
@@ -83,10 +108,10 @@ class LoginForm extends Component {
                 </p>
               )}
             </div>
-            <input className="btn-sign-in" type="submit" value="SIGN IN" />
+            <input className="btn-sign-in" type="submit" value="REGISTER" />
             <div className="register">
-              <p>Don't have an account?</p>
-              <Link to="/register">REGISTER</Link>
+              <p>Already have an account?</p>
+              <Link to="/signin">SIGNIN</Link>
             </div>
           </form>
         </div>
@@ -97,5 +122,5 @@ class LoginForm extends Component {
 
 export default connect(
   null,
-  {logUser}
-)(LoginForm);
+  {regUser}
+)(RegisterForm);
