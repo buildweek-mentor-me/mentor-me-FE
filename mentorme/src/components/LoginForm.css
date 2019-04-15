@@ -5,7 +5,7 @@
   height: 652px;
   z-index: 30;
   margin: 0 auto;
-  top: 30px;
+  top: 60px;
   border-radius: 10px;
   box-shadow: 0 20px 40px rgba(88, 136, 249, 0.2);
   display: flex;
@@ -16,8 +16,10 @@
 .form .img-left {
   width: 50%;
   height: 652px;
-  background: url('../img/thisdot_mentoring.png') no-repeat center center /
-    cover;
+  /* background: url('../img/thisdot_mentoring.png') no-repeat center center /
+    cover; */
+  background: url('../img/soqola_modified.png') no-repeat center center /
+    contain;
   border-radius: 9px 0 0 9px;
   margin: 0;
 }

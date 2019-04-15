@@ -39,6 +39,9 @@ class LoginForm extends Component {
       });
       return;
     }
+
+    this.props.logUser(this.state.credentials);
+    this.props.history.push('/questions-list');
   };
   render() {
     return (
@@ -81,7 +84,7 @@ class LoginForm extends Component {
             </div>
             <input className="btn-sign-in" type="submit" value="SIGN IN" />
             <div className="register">
-              <p>Want to create an account?</p>
+              <p>Don't have an account?</p>
               <Link to="/register">REGISTER</Link>
             </div>
           </form>

@@ -5,10 +5,10 @@ export const logUser = creds => dispatch => {
   dispatch({type: LOGIN_START});
 
   return axios
-    .post('http://localhost:5000/login', creds)
+    .post('http://localhost:5000/api/signin', creds)
     .then(res => {
       localStorage.setItem('token', res.data.payload);
       dispatch({type: LOGIN_SUCCESS, payload: res.data});
     })
-    .catch(err => dispatch({type: LOGIN_FAILURE, payload: err.response}));
+    .catch(err => dispatch({type: LOGIN_FAILURE, payload: err}));
 };
