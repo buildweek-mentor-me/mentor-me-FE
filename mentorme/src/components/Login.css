@@ -1,0 +1,40 @@
+.Login .content .bg {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  z-index: 1;
+}
+
+.Login .left-white {
+  width: 50%;
+  height: 100vh;
+  z-index: 10;
+  top: 0;
+}
+
+.Login .container {
+  width: 1000px;
+  margin: 0 auto;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* right: 0; */
+  top: 30px;
+  position: relative;
+}
+
+.Login .container .logo {
+  width: 223px;
+  height: 46px;
+  background: url('../img/logo.png') no-repeat center center / cover;
+}
+
+.Login .right-gradient {
+  width: 50%;
+  background-image: linear-gradient(to right, #5887f9, #60c3ff);
+  height: 100vh;
+  z-index: 10;
+  top: 0;
+}
