@@ -50,15 +50,15 @@ class RegisterForm extends Component {
     }
 
     this.props.regUser(this.state.credentials);
-    this.props.history.push('/singin');
+    this.props.history.push('/welcome');
   };
   render() {
     return (
-      <div onSubmit={this.onSubmit} className="form">
+      <div className="form">
         <div className="img-left" />
         <div className="form-content">
           <h2>Register</h2>
-          <form>
+          <form onSubmit={this.onSubmit}>
             <div className="form-item">
               <label htmlFor="handle">Username</label>
               <input

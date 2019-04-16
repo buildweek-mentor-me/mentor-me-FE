@@ -14,9 +14,10 @@ let questions = [
     title: 'Is it just me, or is CSS too hard?',
     body:
       'It is really bad design, if you can even call it design.CSS has far too many ways to achieve the same thing, and the syntax is gibberish. Often in CSS you can specify arguments in no particular order, or just leave them out.',
-    timestamp: 'Feb 10',
+    timestamp: '1 hour ago',
     author: 'John doe, Front-End Engineer student at Lambda School',
-    likes: '16'
+    likes: '16',
+    answers: '24'
   }
 ];
 
@@ -34,8 +35,8 @@ function authenticator(req, res, next) {
 }
 
 app.post('/api/signin', (req, res) => {
-  const {username, password} = req.body;
-  if (username === 'bob' && password === 'test') {
+  const {handle, password} = req.body;
+  if (handle === 'steve' && password === '123') {
     req.loggedIn = true;
     res.status(200).json({
       payload: token

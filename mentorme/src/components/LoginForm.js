@@ -8,7 +8,7 @@ import './LoginForm.css';
 class LoginForm extends Component {
   state = {
     credentials: {
-      username: '',
+      handle: '',
       password: ''
     },
     errors: {}
@@ -25,9 +25,10 @@ class LoginForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    if (this.state.credentials.username === '') {
+
+    if (this.state.credentials.handle === '') {
       this.setState({
-        errors: {username: 'Username is required'}
+        errors: {handle: 'Username is required'}
       });
       return;
     }
@@ -38,31 +39,30 @@ class LoginForm extends Component {
       });
       return;
     }
-
     this.props.logUser(this.state.credentials);
     this.props.history.push('/questions');
   };
   render() {
     return (
-      <div onSubmit={this.onSubmit} className="form">
+      <div className="form">
         <div className="img-left" />
         <div className="form-content">
           <h2>Sign in</h2>
-          <form>
+          <form onSubmit={this.onSubmit}>
             <div className="form-item">
               <label htmlFor="username">Username</label>
               <input
-                className={`${this.state.errors.username ? 'is-invalid' : ''}`}
+                className={`${this.state.errors.handle ? 'is-invalid' : ''}`}
                 onChange={this.onChange}
                 type="text"
-                name="username"
+                name="handle"
                 placeholder="Enter username..."
-                value={this.state.credentials.username}
-                error={this.state.errors.username}
+                value={this.state.credentials.handle}
+                error={this.state.errors.handle}
               />
-              {this.state.errors.username && (
-                <p className="error-message-username">
-                  {this.state.errors.username}
+              {this.state.errors.handle && (
+                <p className="error-message-handle">
+                  {this.state.errors.handle}
                 </p>
               )}
             </div>

@@ -4,13 +4,13 @@ import {
   FETCH_QUESTIONS_FAILURE
 } from '../actions';
 
-const intialState = {
+const initialState = {
   questions: [],
   errors: null,
   isFetching: false
 };
 
-export const fecthQuestionsReducer = (state = intialState, action) => {
+export const fetchQuestionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_QUESTIONS_START:
       return {

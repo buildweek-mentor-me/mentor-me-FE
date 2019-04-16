@@ -1,23 +1,19 @@
-import React, {Fragment} from 'react';
+import React from 'react';
+import moment from 'moment';
 
 const Question = props => {
-  console.log(props);
   return (
-    <Fragment>
-      {props.question && (
-        <div className="Question">
-          <div className="header">
-            <h2>{props.title}</h2>
-          </div>
-          <div className="body">
-            <p>{props.author}</p>
-            <p>{props.timestamp}</p>
-            <p>{props.body}</p>
-            <p>{props.likes}</p>
-          </div>
-        </div>
-      )}
-    </Fragment>
+    <div className="Question">
+      <div className="header">
+        <h2>{props.question.title}</h2>
+      </div>
+      <div className="body">
+        <p>{props.question.author}</p>
+        <p>{moment(props.question.created_at).format('MMM Do YY')}</p>
+        <p>{props.question.body}</p>
+        <p>{props.question.likes} likes</p>
+      </div>
+    </div>
   );
 };
 
