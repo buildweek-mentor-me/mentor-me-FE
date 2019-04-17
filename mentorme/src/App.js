@@ -9,6 +9,7 @@ import QuestionsList from './components/QuestionsList';
 import PrivateRoute from './components/PrivateRoute';
 import EditQuestion from './components/EditQuestion';
 import AddQuestion from './components/AddQuestion';
+import QuestionDetails from './components/QuestionDetails';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
           component={EditQuestion}
         />
         <PrivateRoute exact path="/add-question" component={AddQuestion} />
+        <PrivateRoute exact path="/questions/:id" component={QuestionDetails} />
       </div>
     );
   }

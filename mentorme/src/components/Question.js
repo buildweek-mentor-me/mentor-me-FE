@@ -14,15 +14,8 @@ class Question extends React.Component {
         <div className="body">
           <p>{this.props.question.author}</p>
           <p>{moment(this.props.question.created_at).format('MMM Do YY')}</p>
-          <p>{this.props.question.body}</p>
-          <p>{this.props.question.likes} likes</p>
         </div>
-        <Link to={`/edit-question/${this.props.question.id}`}>Edit</Link>
-        <button
-          onClick={() => this.props.deleteQuestion(this.props.question.id)}
-        >
-          Delete
-        </button>
+        <Link to={`/questions/${this.props.question.id}`}>View More</Link>
       </div>
     );
   }
