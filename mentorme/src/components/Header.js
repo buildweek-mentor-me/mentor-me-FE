@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {filterQuestion} from '../actions';
+import {filterQuestion, logOutUser} from '../actions';
 import './Login.css';
 
 class Header extends React.Component {
@@ -22,6 +22,9 @@ class Header extends React.Component {
   onSubmit = e => {
     e.preventDefault();
   };
+  logOut = () => {
+    this.props.logOutUser();
+  };
 
   render() {
     return (
@@ -32,7 +35,11 @@ class Header extends React.Component {
           {this.props.isAuthenticated && (
             <NavLink to="/add-question">Ask something</NavLink>
           )}
-          {this.props.isAuthenticated && <NavLink to="/logout">Logout</NavLink>}
+          {this.props.isAuthenticated && (
+            <NavLink onClick={this.logOut} to="/logout">
+              Logout
+            </NavLink>
+          )}
           {this.props.isLoggedOut && <NavLink to="/signin">Signin</NavLink>}
           {this.props.isLoggedOut && <NavLink to="/register">Register</NavLink>}
         </nav>
@@ -53,14 +60,14 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = ({loginReducer, logoutReducer}) => {
+const mapStateToProps = ({authReducer}) => {
   return {
-    isAuthenticated: loginReducer.isAuthenticated,
-    isLoggedOut: logoutReducer.isLoggedOut
+    isAuthenticated: authReducer.isAuthenticated,
+    isLoggedOut: authReducer.isLoggedOut
   };
 };
 
 export default connect(
   mapStateToProps,
-  {filterQuestion}
+  {filterQuestion, logOutUser}
 )(Header);

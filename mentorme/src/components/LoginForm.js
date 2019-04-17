@@ -39,8 +39,10 @@ class LoginForm extends Component {
       });
       return;
     }
-    this.props.logUser(this.state.credentials);
-    this.props.history.push('/questions');
+
+    this.props
+      .logUser(this.state.credentials)
+      .then(() => this.props.history.push('/questions'));
   };
   render() {
     return (

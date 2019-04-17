@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axiosWithAuth from '../utils/axiosAuth';
 import {LOGOUT_START, LOGOUT_SUCCESS, LOGOUT_FAILURE} from '.';
 
-export const logOutUser = () => dispacth => {
-  dispacth({type: LOGOUT_START});
+export const logOutUser = () => dispatch => {
+  dispatch({type: LOGOUT_START});
 
-  axios
-    .post('http://localhost:5000/login')
+  return axiosWithAuth()
+    .post('https://mentor-mee.herokuapp.com/auth/logout')
     .then(() => {
-      localStorage.removeItem('token');
-      dispacth({type: LOGOUT_SUCCESS});
+      localStorage.clear();
+      dispatch({type: LOGOUT_SUCCESS});
     })
-    .catch(err => dispacth({type: LOGOUT_FAILURE, payload: err.repsonse}));
+    .catch(err => dispatch({type: LOGOUT_FAILURE, payload: err.message}));
 };

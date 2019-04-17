@@ -12,23 +12,32 @@ class QuestionsList extends React.Component {
     return (
       <Fragment>
         <Header />
-        {!this.props.isFetching && this.props.questions.length >= 0 && (
-          <div>
-            {this.props.questions.map(q => {
-              return <Question key={q.id} question={q} />;
-            })}
-          </div>
-        )}
+        {!this.props.isFetching &&
+          this.props.questions.length >= 0 &&
+          this.props.isAuthenticated && (
+            <div>
+              {this.props.questions.map(q => {
+                return (
+                  <Question
+                    key={q.id}
+                    question={q}
+                    questions={this.props.questions}
+                  />
+                );
+              })}
+            </div>
+          )}
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = ({fetchQuestionsReducer, filterQuestionReducer}) => {
+const mapStateToProps = ({questionsReducer, authReducer}) => {
   return {
-    questions: fetchQuestionsReducer.questions,
-    isFetching: fetchQuestionsReducer.isFetching,
-    filteredQuestions: filterQuestionReducer.filteredQuestions
+    questions: questionsReducer.questions,
+    isFetching: questionsReducer.isFetching,
+    filteredQuestions: questionsReducer.filteredQuestions,
+    isAuthenticated: authReducer.isAuthenticated
   };
 };
 
