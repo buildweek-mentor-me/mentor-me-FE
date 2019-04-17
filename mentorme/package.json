@@ -2,8 +2,13 @@
   "name": "mentor",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "11.6.0",
+    "yarn": "1.13.0"
+  },
   "dependencies": {
     "axios": "^0.18.0",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",

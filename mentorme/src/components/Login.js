@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from './LoginForm';
+import Header from './Header';
 import './Login.css';
 
 const Login = props => {
@@ -12,7 +13,7 @@ const Login = props => {
         </div>
       </div>
       <div className="container">
-        <div className="logo" />
+        <Header />
         <LoginForm {...props} />
       </div>
     </div>

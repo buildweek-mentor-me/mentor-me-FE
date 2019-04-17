@@ -1,10 +1,8 @@
 import {combineReducers} from 'redux';
-import {loginReducer} from './loginReducer';
-import {logoutReducer} from './logoutReducer';
-import {fecthQuestionsReducer} from './fecthQuestionsReducer';
+import {authReducer} from './authReducer';
+import {questionsReducer} from './questionsReducer';
 
 export default combineReducers({
-  loginReducer,
-  logoutReducer,
-  fecthQuestionsReducer
+  authReducer,
+  questionsReducer
 });

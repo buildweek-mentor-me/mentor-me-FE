@@ -1,42 +1,36 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {fecthQuestions} from './actions';
+import {Route, withRouter} from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
+import Header from './components/Header';
 import Login from './components/Login';
 import Register from './components/Register';
 import QuestionsList from './components/QuestionsList';
+import PrivateRoute from './components/PrivateRoute';
+import EditQuestion from './components/EditQuestion';
+import AddQuestion from './components/AddQuestion';
+import QuestionDetails from './components/QuestionDetails';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fecthQuestions();
-  }
   render() {
     return (
       <div className="App">
         <Route exact path="/" component={Home} />
-        <Route exact path="/signin" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route
+        <Route path="/signin" component={Login} />
+        <Route path="/register" component={Register} />
+        <PrivateRoute exact path="/questions" component={QuestionsList} />
+        <PrivateRoute
           exact
-          path="/questions"
-          render={props => (
-            <QuestionsList {...props} questions={this.props.questions} />
-          )}
+          path="/edit-question/:id"
+          component={EditQuestion}
         />
+        <PrivateRoute exact path="/add-question" component={AddQuestion} />
+        <PrivateRoute exact path="/questions/:id" component={QuestionDetails} />
       </div>
     );
   }
 }
 
-const mapStateTopProps = ({fecthQuestionsReducer}) => {
-  return {
-    questions: fecthQuestionsReducer.questions
-  };
-};
+const AppWithRouter = withRouter(App);
 
-export default connect(
-  mapStateTopProps,
-  {fecthQuestions}
-)(App);
+export default AppWithRouter;
