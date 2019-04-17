@@ -7,8 +7,9 @@ export const logUser = creds => dispatch => {
   return axios
     .post(`${url}/auth/login`, creds)
     .then(res => {
-      localStorage.setItem('token', res.data.payload);
-      dispatch({type: LOGIN_SUCCESS, payload: res.data});
+      console.log(res)
+      localStorage.setItem('token', res.data.token);
+      dispatch({type: LOGIN_SUCCESS, payload: res.data.token});
     })
     .catch(err => dispatch({type: LOGIN_FAILURE, payload: err}));
 };
