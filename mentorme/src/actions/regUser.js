@@ -5,7 +5,7 @@ export const regUser = creds => dispatch => {
   dispatch({type: REG_START});
   console.log(creds);
   return axios
-    .post('https://mentor-mee.herokuapp.com/auth/register', creds.email)
+    .post('http://localhost:5000/auth/register', creds)
 
     .then(res => {
       localStorage.setItem('token', res.data.payload);
