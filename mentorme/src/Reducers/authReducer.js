@@ -15,7 +15,6 @@ const initialState = {
   error: null,
   isAuthenticated: false,
   logingOut: false,
-  isLoggedOut: false,
   registering: false,
   isRegistered: false
 };
@@ -47,21 +46,21 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         logingOut: true,
-        isLoggedOut: false,
+        isAuthenticated: true,
         error: null
       };
     case LOGOUT_SUCCESS:
       return {
         ...state,
         logingOut: false,
-        isLoggedOut: true,
+        isAuthenticated: false,
         error: null
       };
     case LOGOUT_FAILURE:
       return {
         ...state,
         logingOut: false,
-        isLoggedOut: false,
+        isAuthenticated: true,
         error: action.payload
       };
     case REG_START:

@@ -15,6 +15,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header {...this.props} />
         <Route exact path="/" component={Home} />
         <Route path="/signin" component={Login} />
         <Route path="/register" component={Register} />
