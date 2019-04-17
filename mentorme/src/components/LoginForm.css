@@ -1,0 +1,160 @@
+.form {
+  position: relative;
+  width: 1000px;
+  background: #fff;
+  height: 652px;
+  z-index: 30;
+  margin: 0 auto;
+  top: 60px;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(88, 136, 249, 0.2);
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.form .img-left {
+  width: 50%;
+  height: 652px;
+  /* background: url('../img/thisdot_mentoring.png') no-repeat center center /
+    cover; */
+  background: url('../img/soqola_modified.png') no-repeat center center /
+    contain;
+  border-radius: 9px 0 0 9px;
+  margin: 0;
+}
+
+.form .form-content {
+  width: 50%;
+  padding: 90px 100px;
+}
+
+.form .form-content h2 {
+  font-size: 3.6rem;
+  font-weight: 900;
+}
+
+.form .form-content form .form-item {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form .form-content form .form-item label {
+  font-size: 1.4rem;
+  color: #4c5264;
+  font-weight: 900;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.form .form-content form .form-item input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #d8d8d8;
+  padding-bottom: 10px;
+  font-size: 1.8rem;
+  outline: none;
+  transition: all 0.2s ease-in;
+}
+
+.form .form-content form .form-item input::placeholder {
+  color: #d8d8d8;
+}
+
+.form .form-content form .form-item input:focus {
+  border-bottom: 1px solid #2b2f3b;
+}
+
+.form .form-content .form .form-content form .form-item input::placeholder {
+  font-size: 1.8rem;
+  color: #d8d8d8;
+}
+
+.form form .form-item input.is-invalid {
+  border-bottom: 1px solid tomato;
+  transition: all 0.5s ease-in;
+}
+
+.form form .form-item input.is-invalid:focus {
+  border-bottom: 1px solid tomato;
+}
+
+.error-message-handle {
+  background: tomato;
+  color: #fff;
+  width: 126px;
+  padding: 3px 5px;
+  margin: 0;
+  border-radius: 0 0 4px 4px;
+  font-size: 1.2rem;
+}
+
+.error-message-email {
+  background: tomato;
+  color: #fff;
+  width: 100px;
+  padding: 3px 5px;
+  margin: 0;
+  border-radius: 0 0 4px 4px;
+  font-size: 1.2rem;
+}
+
+.error-message-password {
+  background: tomato;
+  color: #fff;
+  width: 123px;
+  padding: 3px 5px;
+  margin: 0;
+  border-radius: 0 0 4px 4px;
+  font-size: 1.2rem;
+}
+
+.form .form-content .btn-sign-in {
+  margin-top: 30px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 16px;
+  background: #5887f9;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.2rem;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.form .form-content form .btn-sign-in:hover {
+  background: #396ade;
+}
+
+.form .form-content form .register {
+  width: 100%;
+  display: flex;
+  font-size: 1.4rem;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.form .form-content form .register p {
+  margin: 0;
+}
+
+.form .form-content form .register a {
+  text-decoration: none;
+  color: #5887f9;
+  font-weight: 900;
+  transition: all 0.1s;
+  font-size: 1.2rem;
+  padding-bottom: 3px;
+  border-bottom: 2px solid #fff;
+  transition: all 0.3s;
+}
+
+.form .form-content form .register a:hover {
+  color: #396ade;
+  border-bottom: 2px solid #396ade;
+}
