@@ -3,7 +3,7 @@ import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE} from '.';
 
 export const logUser = creds => dispatch => {
   dispatch({type: LOGIN_START});
-  localStorage.setItem('handle', creds.handle);
+  
 
   return axios
     .post('https://mentor-mee.herokuapp.com/auth/login', creds)
@@ -11,6 +11,7 @@ export const logUser = creds => dispatch => {
       dispatch({type: LOGIN_SUCCESS, payload: res.data.token});
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('userId', res.data.userId);
+      localStorage.setItem('handle', creds.handle);
     })
     .catch(err => dispatch({type: LOGIN_FAILURE, payload: err}));
 };
