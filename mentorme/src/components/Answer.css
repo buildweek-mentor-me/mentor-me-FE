@@ -1,0 +1,41 @@
+.Answer .body .info {
+  display: flex;
+  align-items: baseline;
+}
+
+.Answer {
+  border-bottom: 1px solid rgba(171, 171, 171, 0.2);
+  padding-top: 10px;
+  padding: 10px;
+}
+
+.Answer .body .info p {
+  margin-right: 5px;
+  font-size: 1.2rem;
+}
+
+.Answer .body .info .author {
+  font-weight: 800;
+  font-size: 1.6rem;
+}
+
+.Answer .body .content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.Answer .body .content p {
+  margin: 0;
+}
+
+.Answer .body .content .btn {
+  border: none;
+  background: transparent;
+  text-decoration: none;
+  color: #a9a9a9;
+}
+
+.Answer .body .content .btn i {
+  padding: 10px;
+}
