@@ -1,0 +1,11 @@
+.QuestionsList {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.QuestionsList h2 {
+  font-size: 3.4rem;
+  font-weight: 300;
+  margin-bottom: 40px;
+}

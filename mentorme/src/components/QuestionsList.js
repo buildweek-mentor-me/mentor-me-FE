@@ -4,15 +4,17 @@ import {fetchQuestions} from '../actions/';
 import Question from './Question';
 import Header from './Header';
 
+import './QuestionsList.css';
+
 class QuestionsList extends React.Component {
   componentDidMount() {
     this.props.fetchQuestions();
   }
   render() {
     return (
-      <Fragment>
+      <div className="QuestionsList">
         <Header />
-        <h2>Latest </h2>
+        <h2>Latest Questions </h2>
         {this.props.isAuthenticated &&
           !this.props.isFetching &&
           this.props.filteredQuestions.length >= 0 && (
@@ -28,7 +30,7 @@ class QuestionsList extends React.Component {
               })}
             </div>
           )}
-      </Fragment>
+      </div>
     );
   }
 }

@@ -1,0 +1,19 @@
+.Question {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 30px;
+  border-radius: 4px;
+  background: #fff;
+  /* box-shadow: 0 20px 40px rgba(88, 136, 249, 0.2); */
+  border: 1px solid #00000019;
+}
+
+.Question .author {
+  color: #797979;
+  font-size: 1.3rem;
+}
+
+.Question h3 {
+  font-size: 2.4rem;
+  font-weight: 700;
+}

@@ -8,8 +8,9 @@
   box-shadow: 0 20px 40px rgba(88, 136, 249, 0.2);
   padding: 10px;
   padding-right: 20px;
-  border-radius: 0 0 10px 10px;
-  margin-bottom: 60px;
+  border-radius: 0 0 6px 6px;
+  margin-bottom: 50px;
+  background: #fff;
 }
 
 .Header .logo {
