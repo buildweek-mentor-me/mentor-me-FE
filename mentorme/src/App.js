@@ -19,7 +19,7 @@ class App extends Component {
       <div className="App">
         <Header {...this.props} />
         <Route exact path="/" component={Home} />
-        <Route path="/signin" component={Login} />
+        <Route exact path="/" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute exact path="/questions" component={QuestionsList} />
         {/*<PrivateRoute exact path="/questions/:id" component={AnswersList} />*/}
