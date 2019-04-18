@@ -7,6 +7,8 @@ import {deleteQuestion, fetchAnswers} from '../actions';
 import AnswersList from './AnswersList';
 import Header from './Header';
 
+import './QuestionDetails.css';
+
 class QuestionDetails extends Component {
   state = {
     FK_user_id: ''
@@ -36,15 +38,17 @@ class QuestionDetails extends Component {
     return (
       <div>
         <Header />
-        <div className="Question">
+        <div className="QuestionDetails">
           <div className="header">
             <h2>{question.title}</h2>
           </div>
           <div className="body">
-            <p>{question.author}</p>
-            <p>{moment(question.created_at).format('MMM Do YY')}</p>
-            <p>{question.body}</p>
-            <p>{question.likes} likes</p>
+            <p className="body">{question.body}</p>
+            <div className="details">
+              <p className="author">asked by • {question.author}</p>
+              <p>{moment(question.created_at).format('MMM Do YY')}</p>
+            </div>
+            <p className="likes">{question.likes} likes</p>
           </div>
           {question.FK_user_id === this.state.FK_user_id && (
             <Link to={`/edit-question/${question.id}`}>Edit</Link>

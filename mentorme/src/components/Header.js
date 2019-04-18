@@ -30,29 +30,32 @@ class Header extends React.Component {
     const path = this.props.location.pathname;
     return (
       <div className="Header">
-        <div className="logo" />
-        {path !== '/' && this.props.isAuthenticated && (
-          <div className="header">
-            <nav>
-              <NavLink to="/questions">Questions</NavLink>
-              <NavLink to="/add-question">Ask something</NavLink>
-              <NavLink onClick={this.onLogout} to="#">
-                Logout
-              </NavLink>
-            </nav>
-            <form>
-              <div className="form-content">
-                <input
-                  onChange={this.onChange}
-                  type="text"
-                  name="search"
-                  placeholder="Search..."
-                  value={this.state.search}
-                />
-              </div>
-            </form>
-          </div>
-        )}
+        <div className="container">
+          <div className="logo" />
+          {path !== '/' && this.props.isAuthenticated && (
+            <div className="header">
+              <nav>
+                <NavLink to="/questions">Questions</NavLink>
+                <NavLink to="/add-question">Ask something</NavLink>
+                <NavLink onClick={this.onLogout} to="#">
+                  Logout
+                </NavLink>
+              </nav>
+              <form>
+                <div className="form-content">
+                  <i class="fas fa-search" />
+                  <input
+                    onChange={this.onChange}
+                    type="text"
+                    name="search"
+                    placeholder="Search by keywords..."
+                    value={this.state.search}
+                  />
+                </div>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

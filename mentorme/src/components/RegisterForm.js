@@ -50,7 +50,9 @@ class RegisterForm extends Component {
     }
 
     this.props.regUser(this.state.credentials);
-    this.props.history.push('/welcome');
+    setTimeout(() => {
+      this.props.history.push('/');
+    }, 1000);
   };
   render() {
     return (
