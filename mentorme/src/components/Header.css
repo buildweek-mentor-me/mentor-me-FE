@@ -40,6 +40,7 @@
   color: #2b2f3b;
   padding: 10px;
   outline: none;
+  transition: all 0.2s ease-in;
 }
 
 .header nav a.active {
