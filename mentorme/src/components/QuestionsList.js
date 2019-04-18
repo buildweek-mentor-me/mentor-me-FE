@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 import {fetchQuestions} from '../actions/';
 import Question from './Question';
+import Header from './Header';
 
 class QuestionsList extends React.Component {
   componentDidMount() {
@@ -10,6 +11,8 @@ class QuestionsList extends React.Component {
   render() {
     return (
       <Fragment>
+        <Header />
+        <h2>Latest </h2>
         {this.props.isAuthenticated &&
           !this.props.isFetching &&
           this.props.filteredQuestions.length >= 0 && (

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {deleteQuestion, fetchAnswers} from '../actions';
 import AnswersList from './AnswersList';
+import Header from './Header';
 
 class QuestionDetails extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class QuestionDetails extends Component {
     console.log(this.props);
     return (
       <div>
+        <Header />
         <div className="Question">
           <div className="header">
             <h2>{question.title}</h2>
