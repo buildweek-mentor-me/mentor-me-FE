@@ -1,21 +1,26 @@
 .Header {
-  width: 1000px;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #2b2f3b12;
+  margin-bottom: 60px;
+}
+
+.Header .container {
+  width: 900px;
   height: 100px;
   margin: 0px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 20px 40px rgba(88, 136, 249, 0.2);
-  padding: 10px;
-  padding-right: 20px;
+  /* box-shadow: 0 20px 40px rgba(88, 136, 249, 0.2); */
+  padding: 10px 0;
+
   border-radius: 0 0 6px 6px;
-  margin-bottom: 50px;
-  background: #fff;
 }
 
 .Header .logo {
-  width: 223px;
-  height: 46px;
+  width: 150px;
+  height: 30.94px;
   background: url('../img/logo.png') no-repeat center center / cover;
   margin-right: 100px;
   margin-left: 10px;
@@ -24,7 +29,7 @@
 .Header .header {
   display: flex;
   flex-direction: row-reverse;
-  width: 60%;
+  width: 70%;
   justify-content: space-between;
   align-items: center;
 }
@@ -38,7 +43,7 @@
 .Header .header nav a {
   text-decoration: none;
   font-size: 1.6rem;
-  color: #2b2f3b;
+  color: #8a8a8a;
   padding: 10px;
   outline: none;
   transition: all 0.2s ease-in;
@@ -52,19 +57,35 @@
 }
 
 .header form {
-  width: 200px;
+  width: 220px;
   font-size: 1.6rem;
 }
 
-.header form .form-content input {
+.header form .form-content {
   width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.header form .form-content .fa-search {
+  color: #60c3ff;
+}
+
+.header form .form-content input {
+  width: 85%;
   height: 30px;
   padding-bottom: 5px;
   border: 0;
-  border-bottom: 1px solid #d8d8d8;
+  /* border-bottom: 1px solid #d8d8d8; */
   font-size: 1.6rem;
+  font-weight: 500;
   outline: none;
   transition: all 0.2s ease-in;
+}
+
+.header form .form-content input::placeholder {
+  color: #b3b3b3;
 }
 
 .header form .form-content input:focus {

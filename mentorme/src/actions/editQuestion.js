@@ -7,13 +7,18 @@ import {
 
 const URL = 'https://mentor-mee.herokuapp.com/questions';
 
-export const editQuestion = id => dispatch => {
+export const editQuestion = (id, question) => dispatch => {
   dispatch({type: EDIT_QUESTION_START});
-
+  console.log(id);
   axiosWithAuth()
-    .put(`${URL}/${id}`)
-    .then(res => dispatch({type: EDIT_QUESTION_SUCCESS, payload: res.data}))
-    .catch(err =>
-      dispatch({type: EDIT_QUESTION_FAILURE, payload: err.message})
-    );
+    .put(`${URL}/${id}`, question)
+
+    .then(res => {
+      console.log(res.data);
+      dispatch({type: EDIT_QUESTION_SUCCESS, payload: res.data});
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({type: EDIT_QUESTION_FAILURE, payload: err.message});
+    });
 };

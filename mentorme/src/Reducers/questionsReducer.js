@@ -117,7 +117,7 @@ export const questionsReducer = (state = initialState, action) => {
         isEditing: false,
         error: null,
         edited: true,
-        questions: [...state.questions, action.payload]
+        questions: action.payload
       };
     case EDIT_QUESTION_FAILURE:
       return {

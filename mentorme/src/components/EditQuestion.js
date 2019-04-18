@@ -1,14 +1,18 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {editQuestion} from '../actions';
+import {editQuestion, fetchQuestions} from '../actions';
 import Header from './Header';
 
 class EditQuestion extends Component {
   state = {
     question: {
       title: this.props.question.title ? this.props.question.title : '',
-      body: this.props.question.body ? this.props.question.body : ''
+      body: this.props.question.body ? this.props.question.body : '',
+      id: this.props.question.id ? this.props.question.id : '',
+      FK_user_id: this.props.question.FK_user_id
+        ? this.props.question.FK_user_id
+        : ''
     }
   };
 
@@ -25,18 +29,21 @@ class EditQuestion extends Component {
   onSubmit = e => {
     e.preventDefault();
 
+    this.props.editQuestion(this.props.match.params.id, this.state.question);
+    // console.log(this.state.question);
+
     this.setState({
       question: {
         title: '',
         body: ''
       }
     });
-
-    this.props.editQuestion(this.state.question);
+    this.props.fetchQuestions();
     this.props.history.push('/questions');
   };
 
   render() {
+    console.log(this.props);
     return (
       <Fragment>
         <Header />
@@ -80,5 +87,5 @@ const mapStateToProps = ({questionsReducer}, props) => ({
 
 export default connect(
   mapStateToProps,
-  {editQuestion}
+  {editQuestion, fetchQuestions}
 )(EditQuestion);

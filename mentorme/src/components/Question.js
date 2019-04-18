@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -9,16 +9,22 @@ import './Question.css';
 class Question extends React.Component {
   render() {
     return (
-      <div className="Question">
-        <div className="header">
-          <h3>{this.props.question.title}</h3>
-        </div>
-        <div className="body">
-          <p className="author">Asked by • {this.props.question.author}</p>
-          <p>{moment(this.props.question.created_at).format('MMM Do YY')}</p>
-        </div>
-        <Link to={`/questions/${this.props.question.id}`}>View More</Link>
-      </div>
+      <Fragment>
+        <Link to={`/questions/${this.props.question.id}`}>
+          <div className="Question">
+            <div className="header">
+              <h3>{this.props.question.title}</h3>
+            </div>
+            <div className="body">
+              <p className="author">asked by • {this.props.question.author}</p>
+              <p>
+                on {moment(this.props.question.created_at).format('MMM Do YY')}
+              </p>
+            </div>
+            <i class="fas fa-angle-right fa-2x" />
+          </div>
+        </Link>
+      </Fragment>
     );
   }
 }
