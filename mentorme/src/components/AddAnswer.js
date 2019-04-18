@@ -1,4 +1,6 @@
 import React, {Component, Fragment} from 'react';
+import axiosWithAuth from '../utils/axiosAuth';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addAnswer} from '../actions';
 
@@ -6,15 +8,32 @@ class AddAnswer extends Component {
   state = {
     answer: {
       body: '',
-      author: localStorage.getItem('handle')
+      author: '',
+      FK_question_id: this.props.match.params.id,
+      FK_user_id: ''
     }
   };
+
+  componentDidMount() {
+    axiosWithAuth()
+      .get('https://mentor-mee.herokuapp.com/auth/decode')
+      .then(res =>
+        this.setState(prevState => ({
+          answer: {
+            ...prevState.answer,
+            author: res.data.handle,
+            FK_user_id: res.data.subject
+          }
+        }))
+      )
+      .catch(err => console.log(err));
+  }
 
   onChange = e => {
     e.persist();
     this.setState(prevState => ({
       answer: {
-        ...prevState.question,
+        ...prevState.answer,
         [e.target.name]: e.target.value
       }
     }));
@@ -51,6 +70,7 @@ class AddAnswer extends Component {
               />
             </div>
             <input type="submit" value="Add" />
+            <Link to={`/questions/${this.props.match.params.id}`}>Cancel</Link>
           </div>
         </form>
       </Fragment>

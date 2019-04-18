@@ -58,9 +58,10 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = ({authReducer}) => {
+const mapStateToProps = ({authReducer, questionsReducer}) => {
   return {
-    isAuthenticated: authReducer.isAuthenticated
+    isAuthenticated: authReducer.isAuthenticated,
+    filteredQuestion: questionsReducer.filteredQuestion
   };
 };
 

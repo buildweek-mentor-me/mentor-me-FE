@@ -24,7 +24,7 @@ const initialState = {
 };
 
 export const answersReducer = (state = initialState, action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case FETCH_ANSWERS_START:
       return {
         ...state,
@@ -35,31 +35,30 @@ export const answersReducer = (state = initialState, action) => {
     case FETCH_ANSWERS_SUCCESS:
       return {
         ...state,
+        answers: action.payload,
         isFetching: false,
-        errors: null,
-        answers: action.payload
+        errors: null
       };
     case FETCH_ANSWERS_FAILURE:
       return {
         ...state,
+        answers: [],
         isFetching: false,
-        errors: action.payload,
-        answers: []
+        errors: action.payload
       };
     case ADD_ANSWER_START:
       return {
         ...state,
         addingAnswer: true,
-        errors: null,
-        answers: state.answers
+        errors: null
       };
     case ADD_ANSWER_SUCCESS:
       const newAnswer = {
         id: action.payload.id,
         body: action.payload.body,
-        timestamp: action.payload.timestamp,
         author: action.payload.author,
-        likes: action.payload.likes
+        FK_question_id: action.payload.FK_question_id,
+        FK_user_id: action.payload.FK_user_id
       };
       return {
         ...state,
@@ -84,14 +83,13 @@ export const answersReducer = (state = initialState, action) => {
       return {
         ...state,
         deletingAnswer: false,
-        answers: state.answers.filter(a => a.id === action.payload),
+        answers: state.answers.filter(a => a.id !== action.payload),
         error: null
       };
     case DELETE_ANSWER_FAILURE:
       return {
         ...state,
         deletingAnswer: false,
-        answer: state.answer,
         error: action.payload
       };
     default:

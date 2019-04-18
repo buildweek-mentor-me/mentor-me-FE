@@ -12,9 +12,9 @@ class QuestionsList extends React.Component {
       <Fragment>
         {this.props.isAuthenticated &&
           !this.props.isFetching &&
-          this.props.questions.length >= 0 && (
+          this.props.filteredQuestions.length >= 0 && (
             <div>
-              {this.props.questions.map(q => {
+              {this.props.filteredQuestions.map(q => {
                 return (
                   <Question
                     key={q.id}
