@@ -2,14 +2,24 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosAuth';
 import {deleteQuestion, fetchAnswers} from '../actions';
 import AnswersList from './AnswersList';
 import Header from './Header';
 
 class QuestionDetails extends Component {
+  state = {
+    FK_user_id: ''
+  };
   componentDidMount() {
-    // this.props.fetchAnswers();
-    // console.log(this.props);
+    axiosWithAuth()
+      .get('https://mentor-mee.herokuapp.com/auth/decode')
+      .then(res =>
+        this.setState({
+          FK_user_id: res.data.subject
+        })
+      )
+      .catch(err => console.log(err));
   }
 
   onDelete = id => {
@@ -22,7 +32,7 @@ class QuestionDetails extends Component {
       q => `${q.id}` === this.props.match.params.id
     );
 
-    console.log(this.props);
+    console.log(question);
     return (
       <div>
         <Header />
@@ -36,10 +46,14 @@ class QuestionDetails extends Component {
             <p>{question.body}</p>
             <p>{question.likes} likes</p>
           </div>
-          <Link to={`/edit-question/${question.id}`}>Edit</Link>
-          <Link onClick={() => this.onDelete(question.id)} to="/questions">
-            Delete
-          </Link>
+          {question.FK_user_id === this.state.FK_user_id && (
+            <Link to={`/edit-question/${question.id}`}>Edit</Link>
+          )}
+          {question.FK_user_id === this.state.FK_user_id && (
+            <Link onClick={() => this.onDelete(question.id)} to="/questions">
+              Delete
+            </Link>
+          )}
           <Link to={`/questions/${question.id}/add-answer`}>
             Add your answer
           </Link>
