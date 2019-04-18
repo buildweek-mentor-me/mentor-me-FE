@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react';
-import {NavLink} from 'react-router-dom';
+import React from 'react';
+import {NavLink, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {filterQuestion, logOutUser} from '../actions';
-import './Login.css';
+import './Header.css';
 
 class Header extends React.Component {
   state = {
@@ -27,35 +27,33 @@ class Header extends React.Component {
   };
 
   render() {
+    const path = this.props.location.pathname;
     return (
-      <Fragment>
+      <div className="Header">
         <div className="logo" />
-        <nav>
-          {this.props.isAuthenticated && (
-            <NavLink to="/questions">Questions</NavLink>
-          )}
-          {this.props.isAuthenticated && (
-            <NavLink to="/add-question">Ask something</NavLink>
-          )}
-          {this.props.isAuthenticated && (
-            <NavLink onClick={this.onLogout} to="#">
-              Logout
-            </NavLink>
-          )}
-        </nav>
-        {this.props.isAuthenticated && (
-          <form>
-            <input
-              onChange={this.onChange}
-              type="text"
-              name="search"
-              placeholder="Search..."
-              value={this.state.search}
-            />
-            <input type="submit" value="Search" />
-          </form>
+        {path !== '/' && this.props.isAuthenticated && (
+          <div className="header">
+            <nav>
+              <NavLink to="/questions">Questions</NavLink>
+              <NavLink to="/add-question">Ask something</NavLink>
+              <NavLink onClick={this.onLogout} to="#">
+                Logout
+              </NavLink>
+            </nav>
+            <form>
+              <div className="form-content">
+                <input
+                  onChange={this.onChange}
+                  type="text"
+                  name="search"
+                  placeholder="Search..."
+                  value={this.state.search}
+                />
+              </div>
+            </form>
+          </div>
         )}
-      </Fragment>
+      </div>
     );
   }
 }
@@ -67,7 +65,9 @@ const mapStateToProps = ({authReducer, questionsReducer}) => {
   };
 };
 
+const HeaderWithRouter = withRouter(Header);
+
 export default connect(
   mapStateToProps,
   {filterQuestion, logOutUser}
-)(Header);
+)(HeaderWithRouter);

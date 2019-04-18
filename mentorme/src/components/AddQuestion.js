@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import axiosWithAuth from '../utils/axiosAuth';
 import {connect} from 'react-redux';
 import {addQuestion} from '../actions';
+import Header from './Header';
 
 class AddQuestion extends Component {
   state = {
@@ -56,6 +57,7 @@ class AddQuestion extends Component {
     console.log(this.state.question.author);
     return (
       <Fragment>
+        <Header />
         <form onSubmit={this.onSubmit}>
           <div className="form-content">
             <div className="form-item">

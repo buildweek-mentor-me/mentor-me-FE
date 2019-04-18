@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {editQuestion} from '../actions';
+import Header from './Header';
 
 class EditQuestion extends Component {
   state = {
@@ -31,14 +33,13 @@ class EditQuestion extends Component {
     });
 
     this.props.editQuestion(this.state.question);
-
     this.props.history.push('/questions');
   };
 
   render() {
-    console.log(this.props.question);
     return (
       <Fragment>
+        <Header />
         <form onSubmit={this.onSubmit}>
           <div className="form-content">
             <div className="form-item">
@@ -63,6 +64,7 @@ class EditQuestion extends Component {
               />
             </div>
             <input type="submit" value="Edit" />
+            <Link to={`/questions/${this.props.match.params.id}`}>Cancel</Link>
           </div>
         </form>
       </Fragment>

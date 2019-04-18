@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Route, withRouter} from 'react-router-dom';
 import './App.css';
-import Home from './components/Home';
-import Header from './components/Header';
 import Login from './components/Login';
 import Register from './components/Register';
 import QuestionsList from './components/QuestionsList';
@@ -17,8 +15,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header {...this.props} />
-        <Route exact path="/" component={Home} />
         <Route exact path="/" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute exact path="/questions" component={QuestionsList} />
