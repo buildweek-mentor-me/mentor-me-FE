@@ -38,6 +38,7 @@ export const questionsReducer = (state = initialState, action) => {
       return {
         ...state,
         questions: action.payload,
+        filteredQuestions: action.payload,
         isFetching: false,
         errors: null
       };
@@ -55,7 +56,6 @@ export const questionsReducer = (state = initialState, action) => {
         deletingQuestion: true
       };
     case DELETE_QUESTION_SUCCESS:
-      console.log(state.questions);
       return {
         ...state,
         questions: state.questions.filter(q => q.id !== action.payload),
@@ -72,7 +72,7 @@ export const questionsReducer = (state = initialState, action) => {
     case ADD_QUESTION_START:
       return {
         ...state,
-        question: [],
+        questions: [],
         error: null,
         addingQuestion: true
       };
@@ -86,14 +86,14 @@ export const questionsReducer = (state = initialState, action) => {
       };
       return {
         ...state,
-        question: [...state.question, newQuestion],
+        questions: [...state.questions, newQuestion],
         error: null,
         addingQuestion: false
       };
     case ADD_QUESTION_FAILURE:
       return {
         ...state,
-        question: [],
+        questions: [],
         error: action.payload,
         addingQuestion: false
       };

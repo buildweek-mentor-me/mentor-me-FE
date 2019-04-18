@@ -44,3 +44,5 @@ export {addQuestion} from './addQuestion';
 export {editQuestion} from './editQuestion';
 export {deleteQuestion} from './deleteQuestion';
 export {addAnswer} from './addAnswer';
+export {fetchAnswers} from './fetchAnswers';
+export {deleteAnswer} from './deleteAnswer';

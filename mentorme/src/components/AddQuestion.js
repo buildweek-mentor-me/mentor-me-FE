@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import axiosWithAuth from '../utils/axiosAuth';
 import {connect} from 'react-redux';
 import {addQuestion} from '../actions';
 
@@ -7,11 +8,25 @@ class AddQuestion extends Component {
     question: {
       title: '',
       body: '',
-      author: localStorage.getItem('handle'),
-      FK_user_id: localStorage.getItem('userId')
+      author: '',
+      FK_user_id: null
     }
   };
 
+  componentDidMount() {
+    axiosWithAuth()
+      .get('https://mentor-mee.herokuapp.com/auth/decode')
+      .then(res =>
+        this.setState(prevState => ({
+          question: {
+            ...prevState.question,
+            author: res.data.handle,
+            FK_user_id: res.data.subject
+          }
+        }))
+      )
+      .catch(err => console.log(err));
+  }
   onChange = e => {
     e.persist();
     this.setState(prevState => ({
@@ -38,6 +53,7 @@ class AddQuestion extends Component {
   };
 
   render() {
+    console.log(this.state.question.author);
     return (
       <Fragment>
         <form onSubmit={this.onSubmit}>

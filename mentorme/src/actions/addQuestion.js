@@ -10,7 +10,7 @@ const URL = 'https://mentor-mee.herokuapp.com/questions';
 
 export const addQuestion = question => dispatch => {
   dispatch({type: ADD_QUESTION_START});
-  console.log(question);
+
   return axiosWithAuth()
     .post(URL, question)
     .then(res => dispatch({type: ADD_QUESTION_SUCCESS, payload: res.data}))

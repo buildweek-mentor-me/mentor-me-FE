@@ -8,10 +8,13 @@ import {
 
 export const deleteAnswer = id => dispatch => {
   dispatch({type: DELETE_ANSWER_START});
-
+  console.log(id);
   axiosWithAuth()
     .delete(`https://mentor-mee.herokuapp.com/answers/${id}`)
-    .then(res => dispatch({type: DELETE_ANSWER_SUCCESS, payload: res.data}))
+    .then(res => {
+      console.log(res);
+      dispatch({type: DELETE_ANSWER_SUCCESS, payload: id});
+    })
     .catch(err =>
       dispatch({type: DELETE_ANSWER_FAILURE, payload: err.message})
     );
