@@ -22,8 +22,8 @@ class Header extends React.Component {
   onSubmit = e => {
     e.preventDefault();
   };
-  logOut = () => {
-    this.props.logOutUser();
+  onLogout = () => {
+    this.props.logOutUser().then(() => this.props.history.push('/signin'));
   };
 
   render() {
@@ -36,12 +36,10 @@ class Header extends React.Component {
             <NavLink to="/add-question">Ask something</NavLink>
           )}
           {this.props.isAuthenticated && (
-            <NavLink onClick={this.logOut} to="/logout">
+            <NavLink onClick={this.onLogout} to="#">
               Logout
             </NavLink>
           )}
-          {this.props.isLoggedOut && <NavLink to="/signin">Signin</NavLink>}
-          {this.props.isLoggedOut && <NavLink to="/register">Register</NavLink>}
         </nav>
         {this.props.isAuthenticated && (
           <form>
@@ -60,10 +58,10 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = ({authReducer}) => {
+const mapStateToProps = ({authReducer, questionsReducer}) => {
   return {
     isAuthenticated: authReducer.isAuthenticated,
-    isLoggedOut: authReducer.isLoggedOut
+    filteredQuestion: questionsReducer.filteredQuestion
   };
 };
 

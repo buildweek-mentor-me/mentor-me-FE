@@ -20,7 +20,19 @@ export {
   EDIT_QUESTION_FAILURE,
   DELETE_QUESTION_START,
   DELETE_QUESTION_SUCCESS,
-  DELETE_QUESTION_FAILURE
+  DELETE_QUESTION_FAILURE,
+  FETCH_ANSWERS_START,
+  FETCH_ANSWERS_SUCCESS,
+  FETCH_ANSWERS_FAILURE,
+  ADD_ANSWER_START,
+  ADD_ANSWER_SUCCESS,
+  ADD_ANSWER_FAILURE,
+  EDIT_ANSWER_START,
+  EDIT_ANSWER_SUCCESS,
+  EDIT_ANSWER_FAILURE,
+  DELETE_ANSWER_START,
+  DELETE_ANSWER_SUCCESS,
+  DELETE_ANSWER_FAILURE
 } from './types';
 
 export {logUser} from './logUser';
@@ -31,3 +43,6 @@ export {filterQuestion} from './filterQuestion';
 export {addQuestion} from './addQuestion';
 export {editQuestion} from './editQuestion';
 export {deleteQuestion} from './deleteQuestion';
+export {addAnswer} from './addAnswer';
+export {fetchAnswers} from './fetchAnswers';
+export {deleteAnswer} from './deleteAnswer';

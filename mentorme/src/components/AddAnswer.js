@@ -1,15 +1,16 @@
 import React, {Component, Fragment} from 'react';
 import axiosWithAuth from '../utils/axiosAuth';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {addQuestion} from '../actions';
+import {addAnswer} from '../actions';
 
-class AddQuestion extends Component {
+class AddAnswer extends Component {
   state = {
-    question: {
-      title: '',
+    answer: {
       body: '',
       author: '',
-      FK_user_id: null
+      FK_question_id: this.props.match.params.id,
+      FK_user_id: ''
     }
   };
 
@@ -18,8 +19,8 @@ class AddQuestion extends Component {
       .get('https://mentor-mee.herokuapp.com/auth/decode')
       .then(res =>
         this.setState(prevState => ({
-          question: {
-            ...prevState.question,
+          answer: {
+            ...prevState.answer,
             author: res.data.handle,
             FK_user_id: res.data.subject
           }
@@ -27,11 +28,12 @@ class AddQuestion extends Component {
       )
       .catch(err => console.log(err));
   }
+
   onChange = e => {
     e.persist();
     this.setState(prevState => ({
-      question: {
-        ...prevState.question,
+      answer: {
+        ...prevState.answer,
         [e.target.name]: e.target.value
       }
     }));
@@ -40,46 +42,35 @@ class AddQuestion extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    this.props.addQuestion(this.state.question);
+    this.props.addAnswer(this.state.answer);
 
     this.setState({
-      question: {
-        title: '',
+      answer: {
         body: ''
       }
     });
 
-    this.props.history.push('/questions');
+    this.props.history.push(`/questions/${this.props.match.params.id}`);
   };
 
   render() {
-    console.log(this.state.question.author);
     return (
       <Fragment>
         <form onSubmit={this.onSubmit}>
           <div className="form-content">
             <div className="form-item">
-              <label htmlFor="title">Question title</label>
-              <input
-                onChange={this.onChange}
-                type="text"
-                name="title"
-                value={this.state.question.title}
-                placeholder="Question title..."
-              />
-            </div>
-            <div className="form-item">
-              <label htmlFor="body">Question Details</label>
+              <label htmlFor="body">Type Response</label>
               <textarea
                 onChange={this.onChange}
                 name="body"
                 cols="30"
                 rows="10"
-                value={this.state.question.body}
-                placeholder="Details..."
+                value={this.state.answer.body}
+                placeholder="Response..."
               />
             </div>
             <input type="submit" value="Add" />
+            <Link to={`/questions/${this.props.match.params.id}`}>Cancel</Link>
           </div>
         </form>
       </Fragment>
@@ -89,5 +80,5 @@ class AddQuestion extends Component {
 
 export default connect(
   null,
-  {addQuestion}
-)(AddQuestion);
+  {addAnswer}
+)(AddAnswer);
