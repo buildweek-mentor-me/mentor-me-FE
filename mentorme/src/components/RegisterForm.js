@@ -111,7 +111,7 @@ class RegisterForm extends Component {
             <input className="btn-sign-in" type="submit" value="REGISTER" />
             <div className="register">
               <p>Already have an account?</p>
-              <Link to="/signin">SIGNIN</Link>
+              <Link to="/">SIGNIN</Link>
             </div>
           </form>
         </div>

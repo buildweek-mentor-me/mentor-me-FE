@@ -23,7 +23,7 @@ class Header extends React.Component {
     e.preventDefault();
   };
   onLogout = () => {
-    this.props.logOutUser().then(() => this.props.history.push('/signin'));
+    this.props.logOutUser().then(() => this.props.history.push('/'));
   };
 
   render() {
@@ -31,7 +31,9 @@ class Header extends React.Component {
       <Fragment>
         <div className="logo" />
         <nav>
-          {this.props.isAuthenticated && <NavLink to="/home">Home</NavLink>}
+          {this.props.isAuthenticated && (
+            <NavLink to="/questions">Questions</NavLink>
+          )}
           {this.props.isAuthenticated && (
             <NavLink to="/add-question">Ask something</NavLink>
           )}
