@@ -25,10 +25,10 @@ This is the front-end for the Mentor me project as part of Lambda School Build W
 It is a web app using React on the front end and NodeJS on the backend. Redux is used for state management.
 
 **Tech used on the Front-end**: 
-React
-React-router-dom
-Redux
-Redux-thunk
-MomentJS
-Axios
+React,
+React-router-dom,
+Redux,
+Redux-thunk,
+MomentJS,
+Axios.
 
