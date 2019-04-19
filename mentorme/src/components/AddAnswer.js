@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addAnswer} from '../actions';
 
+import './AddAnswer.css';
+
 class AddAnswer extends Component {
   state = {
     answer: {
@@ -56,23 +58,30 @@ class AddAnswer extends Component {
   render() {
     return (
       <Fragment>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-content">
-            <div className="form-item">
-              <label htmlFor="body">Type Response</label>
-              <textarea
-                onChange={this.onChange}
-                name="body"
-                cols="30"
-                rows="10"
-                value={this.state.answer.body}
-                placeholder="Response..."
-              />
+        <div className="AddAnswer">
+          <form onSubmit={this.onSubmit}>
+            <div className="form-content">
+              <div className="form-item">
+                <textarea
+                  required
+                  type="text"
+                  onChange={this.onChange}
+                  name="body"
+                  cols="30"
+                  rows="10"
+                  value={this.state.answer.body}
+                  placeholder="Add answer..."
+                />
+              </div>
+              <div className="btns">
+                <input type="submit" value="Add" />
+                <Link to={`/questions/${this.props.match.params.id}`}>
+                  Cancel
+                </Link>
+              </div>
             </div>
-            <input type="submit" value="Add" />
-            <Link to={`/questions/${this.props.match.params.id}`}>Cancel</Link>
-          </div>
-        </form>
+          </form>
+        </div>
       </Fragment>
     );
   }

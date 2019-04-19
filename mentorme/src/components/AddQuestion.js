@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import axiosWithAuth from '../utils/axiosAuth';
 import {connect} from 'react-redux';
-import {addQuestion} from '../actions';
+import {addQuestion, fetchQuestions} from '../actions';
 import Header from './Header';
 
 class AddQuestion extends Component {
@@ -37,6 +37,9 @@ class AddQuestion extends Component {
       }
     }));
   };
+  componentWillUnmount() {
+    this.props.fetchQuestions();
+  }
 
   onSubmit = e => {
     e.preventDefault();
@@ -49,7 +52,6 @@ class AddQuestion extends Component {
         body: ''
       }
     });
-
     this.props.history.push('/questions');
   };
 
@@ -91,5 +93,5 @@ class AddQuestion extends Component {
 
 export default connect(
   null,
-  {addQuestion}
+  {addQuestion, fetchQuestions}
 )(AddQuestion);

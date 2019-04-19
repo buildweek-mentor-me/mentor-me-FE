@@ -37,6 +37,9 @@
   padding: 30px;
   padding-top: 0;
   padding-bottom: 0;
+  width: 100%;
+  margin: 0;
+  overflow-wrap: break-word;
 }
 
 .QuestionDetails .body .details .info {
