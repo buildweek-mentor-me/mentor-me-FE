@@ -20,7 +20,15 @@ This is the front-end for the Mentor me project as part of Lambda School Build W
 
 **Stretch**: Allow photos or files to be attached to a posted question.
 
-**What is it?**: It is a web app using React on the front end and NodeJS on the backend. Redux is used for state management.
+**What is it?**: 
 
-**Tech used on the Front-end**: React, react-router-dom, redux, redux-thunk, momentJS, axios.
+It is a web app using React on the front end and NodeJS on the backend. Redux is used for state management.
+
+**Tech used on the Front-end**: 
+React
+React-router-dom
+Redux
+Redux-thunk
+MomentJS
+Axios
 
