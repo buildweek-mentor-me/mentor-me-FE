@@ -36,14 +36,14 @@ class Header extends React.Component {
             <div className="header">
               <nav>
                 <NavLink to="/questions">Questions</NavLink>
-                <NavLink to="/add-question">Ask something</NavLink>
+                <NavLink to="/add-question">Add question</NavLink>
                 <NavLink onClick={this.onLogout} to="#">
                   Logout
                 </NavLink>
               </nav>
               <form>
                 <div className="form-content">
-                  <i class="fas fa-search" />
+                  <i className="fas fa-search" />
                   <input
                     onChange={this.onChange}
                     type="text"

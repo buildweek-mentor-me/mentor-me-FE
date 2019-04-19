@@ -8,7 +8,6 @@ import PrivateRoute from './components/PrivateRoute';
 import EditQuestion from './components/EditQuestion';
 import AddQuestion from './components/AddQuestion';
 import QuestionDetails from './components/QuestionDetails';
-import AnswersList from './components/AnswersList';
 import AddAnswer from './components/AddAnswer';
 
 class App extends Component {
@@ -18,7 +17,6 @@ class App extends Component {
         <Route exact path="/" component={Login} />
         <Route path="/register" component={Register} />
         <PrivateRoute exact path="/questions" component={QuestionsList} />
-        {/*<PrivateRoute exact path="/questions/:id" component={AnswersList} />*/}
         <PrivateRoute
           exact
           path="/edit-question/:id"

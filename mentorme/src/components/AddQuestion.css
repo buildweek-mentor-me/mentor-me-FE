@@ -1,0 +1,40 @@
+.AddQuestion {
+  width: 860px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(171, 171, 171, 0.2);
+}
+
+.AddQuestion .form-content .form-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.AddQuestion .form-content .form-item label {
+  font-size: 1.6rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.AddQuestion .form-content .form-item input {
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid #ebebeb;
+  font-size: 1.6rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.AddQuestion .form-content .form-item input:focus {
+  border-bottom: 1px solid #5887f9;
+}
+
+.AddQuestion .form-content .form-item textarea {
+  border-bottom: 1px solid #ebebeb;
+  border-radius: 4px;
+  font-size: 1.6rem;
+}

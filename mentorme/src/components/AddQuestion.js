@@ -1,8 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import axiosWithAuth from '../utils/axiosAuth';
 import {connect} from 'react-redux';
-import {addQuestion} from '../actions';
+import {addQuestion, fetchQuestions} from '../actions';
 import Header from './Header';
+
+import './AddQuestion.css';
 
 class AddQuestion extends Component {
   state = {
@@ -37,6 +39,9 @@ class AddQuestion extends Component {
       }
     }));
   };
+  componentWillUnmount() {
+    this.props.fetchQuestions();
+  }
 
   onSubmit = e => {
     e.preventDefault();
@@ -49,7 +54,6 @@ class AddQuestion extends Component {
         body: ''
       }
     });
-
     this.props.history.push('/questions');
   };
 
@@ -58,20 +62,19 @@ class AddQuestion extends Component {
     return (
       <Fragment>
         <Header />
-        <form onSubmit={this.onSubmit}>
+        <form className="AddQuestion" onSubmit={this.onSubmit}>
           <div className="form-content">
             <div className="form-item">
-              <label htmlFor="title">Question title</label>
               <input
                 onChange={this.onChange}
                 type="text"
                 name="title"
                 value={this.state.question.title}
-                placeholder="Question title..."
+                placeholder="Add question..."
               />
             </div>
             <div className="form-item">
-              <label htmlFor="body">Question Details</label>
+              <label htmlFor="body">Give more details</label>
               <textarea
                 onChange={this.onChange}
                 name="body"
@@ -91,5 +94,5 @@ class AddQuestion extends Component {
 
 export default connect(
   null,
-  {addQuestion}
+  {addQuestion, fetchQuestions}
 )(AddQuestion);

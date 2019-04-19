@@ -4,6 +4,8 @@ import axiosWithAuth from '../utils/axiosAuth';
 import {connect} from 'react-redux';
 import {deleteAnswer} from '../actions';
 
+import './Answer.css';
+
 class Answer extends React.Component {
   state = {
     FK_user_id: ''
@@ -25,15 +27,22 @@ class Answer extends React.Component {
     return (
       <div className="Answer">
         <div className="body">
-          <p>{this.props.answer.body}</p>
-          <p>{this.props.answer.author}</p>
-          <p>{moment(this.props.answer.created_at).format('MMM Do YY')}</p>
+          <div className="info">
+            <p className="author">{this.props.answer.author}</p>
+            <p>{moment(this.props.answer.created_at).format('MMM Do YY')}</p>
+          </div>
+          <div className="content">
+            <p>{this.props.answer.body}</p>
+            {this.props.answer.FK_user_id === this.state.FK_user_id && (
+              <button
+                className="btn"
+                onClick={() => this.onDelete(this.props.answer.id)}
+              >
+                <i className="far fa-trash-alt fa-lg" />
+              </button>
+            )}
+          </div>
         </div>
-        {this.props.answer.FK_user_id === this.state.FK_user_id && (
-          <button onClick={() => this.onDelete(this.props.answer.id)}>
-            Delete
-          </button>
-        )}
       </div>
     );
   }
