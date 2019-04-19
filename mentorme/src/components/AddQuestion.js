@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {addQuestion, fetchQuestions} from '../actions';
 import Header from './Header';
 
+import './AddQuestion.css';
+
 class AddQuestion extends Component {
   state = {
     question: {
@@ -60,20 +62,19 @@ class AddQuestion extends Component {
     return (
       <Fragment>
         <Header />
-        <form onSubmit={this.onSubmit}>
+        <form className="AddQuestion" onSubmit={this.onSubmit}>
           <div className="form-content">
             <div className="form-item">
-              <label htmlFor="title">Question title</label>
               <input
                 onChange={this.onChange}
                 type="text"
                 name="title"
                 value={this.state.question.title}
-                placeholder="Question title..."
+                placeholder="Add question..."
               />
             </div>
             <div className="form-item">
-              <label htmlFor="body">Question Details</label>
+              <label htmlFor="body">Give more details</label>
               <textarea
                 onChange={this.onChange}
                 name="body"
