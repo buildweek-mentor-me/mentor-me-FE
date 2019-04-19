@@ -15,7 +15,9 @@ class EditQuestion extends Component {
         : ''
     }
   };
-
+  componentDidMount() {
+    this.props.fetchQuestions();
+  }
   onChange = e => {
     e.persist();
     this.setState(prevState => ({
@@ -28,9 +30,8 @@ class EditQuestion extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
+    const id = this.props.match.params.id;
     this.props.editQuestion(this.props.match.params.id, this.state.question);
-    // console.log(this.state.question);
 
     this.setState({
       question: {
@@ -39,28 +40,26 @@ class EditQuestion extends Component {
       }
     });
     this.props.fetchQuestions();
-    this.props.history.push('/questions');
+    this.props.history.push(`/questions`);
   };
 
   render() {
-    console.log(this.props);
     return (
       <Fragment>
         <Header />
-        <form onSubmit={this.onSubmit}>
+        <form className="AddQuestion" onSubmit={this.onSubmit}>
           <div className="form-content">
             <div className="form-item">
-              <label htmlFor="title">Question title</label>
               <input
                 onChange={this.onChange}
                 type="text"
                 name="title"
                 value={this.state.question.title}
-                placeholder="Question title..."
+                placeholder="Edit title..."
               />
             </div>
             <div className="form-item">
-              <label htmlFor="body">Question Details</label>
+              <label htmlFor="body">Edit Details</label>
               <textarea
                 onChange={this.onChange}
                 name="body"

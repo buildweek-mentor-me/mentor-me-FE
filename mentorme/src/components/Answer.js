@@ -20,6 +20,16 @@ class Answer extends React.Component {
       )
       .catch(err => console.log(err));
   }
+  componentWillUnmount() {
+    axiosWithAuth()
+      .get('https://mentor-mee.herokuapp.com/auth/decode')
+      .then(res =>
+        this.setState({
+          FK_user_id: res.data.subject
+        })
+      )
+      .catch(err => console.log(err));
+  }
   onDelete = id => {
     this.props.deleteAnswer(id);
   };

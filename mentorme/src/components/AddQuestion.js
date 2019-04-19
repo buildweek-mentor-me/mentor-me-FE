@@ -58,7 +58,6 @@ class AddQuestion extends Component {
   };
 
   render() {
-    console.log(this.state.question.author);
     return (
       <Fragment>
         <Header />

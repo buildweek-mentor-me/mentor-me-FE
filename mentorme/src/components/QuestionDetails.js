@@ -3,7 +3,7 @@ import moment from 'moment';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosAuth';
-import {deleteQuestion, fetchAnswers} from '../actions';
+import {deleteQuestion, fetchAnswers, fetchQuestions} from '../actions';
 import AnswersList from './AnswersList';
 import Header from './Header';
 
@@ -13,6 +13,7 @@ class QuestionDetails extends Component {
   state = {
     FK_user_id: ''
   };
+
   componentDidMount() {
     axiosWithAuth()
       .get('https://mentor-mee.herokuapp.com/auth/decode')
@@ -25,8 +26,7 @@ class QuestionDetails extends Component {
   }
 
   onDelete = id => {
-    this.props.deleteQuestion(id);
-    this.props.fetchAnswers();
+    this.props.deleteQuestion(id).then(() => this.props.fetchAnswers());
   };
 
   render() {
@@ -57,7 +57,7 @@ class QuestionDetails extends Component {
               <div className="buttons">
                 {question.FK_user_id === this.state.FK_user_id && (
                   <Link to={`/edit-question/${question.id}`}>
-                    <i class="fas fa-edit" />
+                    <i className="fas fa-edit" />
                   </Link>
                 )}
                 {question.FK_user_id === this.state.FK_user_id && (
@@ -65,7 +65,7 @@ class QuestionDetails extends Component {
                     onClick={() => this.onDelete(question.id)}
                     to="/questions"
                   >
-                    <i class="far fa-trash-alt" />
+                    <i className="far fa-trash-alt" />
                   </Link>
                 )}
               </div>
@@ -83,7 +83,6 @@ class QuestionDetails extends Component {
 }
 
 const mapStateToProps = ({questionsReducer, answersReducer, authReducer}) => {
-  console.log(questionsReducer);
   return {
     questions: questionsReducer.questions,
     isAuthenticated: authReducer.isAuthenticated,
@@ -93,5 +92,5 @@ const mapStateToProps = ({questionsReducer, answersReducer, authReducer}) => {
 
 export default connect(
   mapStateToProps,
-  {deleteQuestion, fetchAnswers}
+  {deleteQuestion, fetchAnswers, fetchQuestions}
 )(QuestionDetails);

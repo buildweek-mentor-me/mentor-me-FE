@@ -7,9 +7,6 @@ import Header from './Header';
 import './QuestionsList.css';
 
 class QuestionsList extends React.Component {
-  componentWillMount() {
-    this.props.fetchQuestions();
-  }
   componentDidMount() {
     this.props.fetchQuestions();
   }
