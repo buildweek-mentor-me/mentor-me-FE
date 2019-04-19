@@ -50,7 +50,9 @@ class RegisterForm extends Component {
     }
 
     this.props.regUser(this.state.credentials);
-    this.props.history.push('/welcome');
+    setTimeout(() => {
+      this.props.history.push('/');
+    }, 1000);
   };
   render() {
     return (
@@ -111,7 +113,7 @@ class RegisterForm extends Component {
             <input className="btn-sign-in" type="submit" value="REGISTER" />
             <div className="register">
               <p>Already have an account?</p>
-              <Link to="/signin">SIGNIN</Link>
+              <Link to="/">SIGNIN</Link>
             </div>
           </form>
         </div>

@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react';
-import {NavLink} from 'react-router-dom';
+import React from 'react';
+import {NavLink, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {filterQuestion, logOutUser} from '../actions';
-import './Login.css';
+import './Header.css';
 
 class Header extends React.Component {
   state = {
@@ -23,37 +23,40 @@ class Header extends React.Component {
     e.preventDefault();
   };
   onLogout = () => {
-    this.props.logOutUser().then(() => this.props.history.push('/signin'));
+    this.props.logOutUser().then(() => this.props.history.push('/'));
   };
 
   render() {
+    const path = this.props.location.pathname;
     return (
-      <Fragment>
-        <div className="logo" />
-        <nav>
-          {this.props.isAuthenticated && <NavLink to="/home">Home</NavLink>}
-          {this.props.isAuthenticated && (
-            <NavLink to="/add-question">Ask something</NavLink>
+      <div className="Header">
+        <div className="container">
+          <div className="logo" />
+          {path !== '/' && this.props.isAuthenticated && (
+            <div className="header">
+              <nav>
+                <NavLink to="/questions">Questions</NavLink>
+                <NavLink to="/add-question">Add question</NavLink>
+                <NavLink onClick={this.onLogout} to="#">
+                  Logout
+                </NavLink>
+              </nav>
+              <form>
+                <div className="form-content">
+                  <i class="fas fa-search" />
+                  <input
+                    onChange={this.onChange}
+                    type="text"
+                    name="search"
+                    placeholder="Search by keywords..."
+                    value={this.state.search}
+                  />
+                </div>
+              </form>
+            </div>
           )}
-          {this.props.isAuthenticated && (
-            <NavLink onClick={this.onLogout} to="#">
-              Logout
-            </NavLink>
-          )}
-        </nav>
-        {this.props.isAuthenticated && (
-          <form>
-            <input
-              onChange={this.onChange}
-              type="text"
-              name="search"
-              placeholder="Search..."
-              value={this.state.search}
-            />
-            <input type="submit" value="Search" />
-          </form>
-        )}
-      </Fragment>
+        </div>
+      </div>
     );
   }
 }
@@ -65,7 +68,9 @@ const mapStateToProps = ({authReducer, questionsReducer}) => {
   };
 };
 
+const HeaderWithRouter = withRouter(Header);
+
 export default connect(
   mapStateToProps,
   {filterQuestion, logOutUser}
-)(Header);
+)(HeaderWithRouter);

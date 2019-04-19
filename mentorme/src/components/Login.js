@@ -13,7 +13,7 @@ const Login = props => {
         </div>
       </div>
       <div className="container">
-        <Header />
+        <div className="logo" />
         <LoginForm {...props} />
       </div>
     </div>

@@ -1,0 +1,21 @@
+.QuestionsList {
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.QuestionsList h2 {
+  width: 840px;
+  font-size: 3.4rem;
+  font-weight: 800;
+  margin: 30px auto;
+  margin-bottom: 20px;
+}
+
+.QuestionsList .container {
+  width: 900px;
+  margin: 0 auto;
+  /* background: #fff; */
+  padding: 30px;
+  border-radius: 4px;
+}
