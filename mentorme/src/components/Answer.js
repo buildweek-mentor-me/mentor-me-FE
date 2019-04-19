@@ -38,7 +38,7 @@ class Answer extends React.Component {
                 className="btn"
                 onClick={() => this.onDelete(this.props.answer.id)}
               >
-                <i class="far fa-trash-alt fa-lg" />
+                <i className="far fa-trash-alt fa-lg" />
               </button>
             )}
           </div>

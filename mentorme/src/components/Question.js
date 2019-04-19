@@ -21,7 +21,7 @@ class Question extends React.Component {
                 on {moment(this.props.question.created_at).format('MMM Do YY')}
               </p>
             </div>
-            <i class="fas fa-angle-right fa-2x" />
+            <i className="fas fa-angle-right fa-2x" />
           </div>
         </Link>
       </Fragment>

@@ -26,6 +26,7 @@ class QuestionDetails extends Component {
 
   onDelete = id => {
     this.props.deleteQuestion(id);
+    this.props.fetchAnswers();
   };
 
   render() {
@@ -34,7 +35,6 @@ class QuestionDetails extends Component {
       q => `${q.id}` === this.props.match.params.id
     );
 
-    console.log(question);
     return (
       <div>
         <Header />
@@ -44,7 +44,7 @@ class QuestionDetails extends Component {
               <h2>{question.title}</h2>
             </div>
             <Link to={`/questions/${question.id}/add-answer`}>
-              <i class="fas fa-plus" /> Add answer
+              <i className="fas fa-plus" /> Add answer
             </Link>
           </div>
           <div className="body">

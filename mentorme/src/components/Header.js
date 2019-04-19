@@ -43,7 +43,7 @@ class Header extends React.Component {
               </nav>
               <form>
                 <div className="form-content">
-                  <i class="fas fa-search" />
+                  <i className="fas fa-search" />
                   <input
                     onChange={this.onChange}
                     type="text"

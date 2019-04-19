@@ -1,6 +1,5 @@
 import React from 'react';
 import LoginForm from './LoginForm';
-import Header from './Header';
 import './Login.css';
 
 const Login = props => {
