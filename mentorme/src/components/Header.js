@@ -36,7 +36,7 @@ class Header extends React.Component {
             <div className="header">
               <nav>
                 <NavLink to="/questions">Questions</NavLink>
-                <NavLink to="/add-question">Ask something</NavLink>
+                <NavLink to="/add-question">Add question</NavLink>
                 <NavLink onClick={this.onLogout} to="#">
                   Logout
                 </NavLink>
