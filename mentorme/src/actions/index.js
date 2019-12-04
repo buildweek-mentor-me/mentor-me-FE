@@ -32,17 +32,21 @@ export {
   EDIT_ANSWER_FAILURE,
   DELETE_ANSWER_START,
   DELETE_ANSWER_SUCCESS,
-  DELETE_ANSWER_FAILURE
-} from './types';
+  DELETE_ANSWER_FAILURE,
+  UPVOTE_START,
+  UPVOTE_SUCCESS,
+  UPVOTE_FAILURE
+} from "./types";
 
-export {logUser} from './logUser';
-export {regUser} from './regUser';
-export {logOutUser} from './logOutUser';
-export {fetchQuestions} from './fetchQuestions';
-export {filterQuestion} from './filterQuestion';
-export {addQuestion} from './addQuestion';
-export {editQuestion} from './editQuestion';
-export {deleteQuestion} from './deleteQuestion';
-export {addAnswer} from './addAnswer';
-export {fetchAnswers} from './fetchAnswers';
-export {deleteAnswer} from './deleteAnswer';
+export { logUser } from "./logUser";
+export { regUser } from "./regUser";
+export { logOutUser } from "./logOutUser";
+export { fetchQuestions } from "./fetchQuestions";
+export { filterQuestion } from "./filterQuestion";
+export { addQuestion } from "./addQuestion";
+export { editQuestion } from "./editQuestion";
+export { deleteQuestion } from "./deleteQuestion";
+export { addAnswer } from "./addAnswer";
+export { fetchAnswers } from "./fetchAnswers";
+export { deleteAnswer } from "./deleteAnswer";
+export { upvote } from "./upvote";

@@ -11,8 +11,11 @@ import {
   DELETE_QUESTION_FAILURE,
   EDIT_QUESTION_START,
   EDIT_QUESTION_SUCCESS,
-  EDIT_QUESTION_FAILURE
-} from '../actions';
+  EDIT_QUESTION_FAILURE,
+  UPVOTE_START,
+  UPVOTE_SUCCESS,
+  UPVOTE_FAILURE
+} from "../actions";
 
 const initialState = {
   questions: [],
@@ -101,7 +104,7 @@ export const questionsReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredQuestions: state.questions.filter(question => {
-          return question.title.includes(action.payload);
+          return question.title.toLowerCase().includes(action.payload.toLowerCase());
         })
       };
     case EDIT_QUESTION_START:
@@ -125,6 +128,18 @@ export const questionsReducer = (state = initialState, action) => {
         isEditing: false,
         error: action.payload,
         edited: false
+      };
+    case UPVOTE_START:
+      return {
+        ...state
+      };
+    case UPVOTE_SUCCESS:
+      return {
+        ...state
+      };
+    case UPVOTE_FAILURE:
+      return {
+        error: action.payload
       };
     default:
       return state;

@@ -1,12 +1,12 @@
-import React from 'react';
-import {NavLink, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {filterQuestion, logOutUser} from '../actions';
-import './Header.css';
+import React from "react";
+import { NavLink, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { filterQuestion, logOutUser } from "../actions";
+import "./Header.css";
 
 class Header extends React.Component {
   state = {
-    search: ''
+    search: ""
   };
 
   onChange = e => {
@@ -14,7 +14,7 @@ class Header extends React.Component {
       [e.target.name]: e.target.value
     });
 
-    if (e.target.name === 'search') {
+    if (e.target.name === "search") {
       this.props.filterQuestion(e.target.value);
     }
   };
@@ -23,7 +23,7 @@ class Header extends React.Component {
     e.preventDefault();
   };
   onLogout = () => {
-    this.props.logOutUser().then(() => this.props.history.push('/'));
+    this.props.logOutUser().then(() => this.props.history.push("/"));
   };
 
   render() {
@@ -31,8 +31,10 @@ class Header extends React.Component {
     return (
       <div className="Header">
         <div className="container">
-          <div className="logo" />
-          {path !== '/' && this.props.isAuthenticated && (
+          <NavLink to="/questions">
+            <div className="logo" />
+          </NavLink>
+          {path !== "/" && this.props.isAuthenticated && (
             <div className="header">
               <nav>
                 <NavLink to="/questions">Questions</NavLink>
@@ -61,7 +63,7 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = ({authReducer, questionsReducer}) => {
+const mapStateToProps = ({ authReducer, questionsReducer }) => {
   return {
     isAuthenticated: authReducer.isAuthenticated,
     filteredQuestion: questionsReducer.filteredQuestion
@@ -70,7 +72,6 @@ const mapStateToProps = ({authReducer, questionsReducer}) => {
 
 const HeaderWithRouter = withRouter(Header);
 
-export default connect(
-  mapStateToProps,
-  {filterQuestion, logOutUser}
-)(HeaderWithRouter);
+export default connect(mapStateToProps, { filterQuestion, logOutUser })(
+  HeaderWithRouter
+);

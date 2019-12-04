@@ -4,6 +4,7 @@ a {
 
 .Question {
   width: 100%;
+  min-width: 600px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -67,3 +68,18 @@ a {
   align-items: baseline;
   margin-top: 5px;
 }
+
+.question-hub {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.fa-chevron-circle-up {
+  text-align: center;
+  color: #5887f9;
+  margin-right: 20px;
+  cursor: pointer;
+} 
+
