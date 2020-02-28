@@ -11,10 +11,10 @@ import {
 } from '../actions';
 
 const initialState = {
-  logingIn: false,
+  loggingIn: false,
   error: null,
   isAuthenticated: false,
-  logingOut: false,
+  loggingOut: false,
   registering: false,
   isRegistered: false
 };
@@ -24,42 +24,42 @@ export const authReducer = (state = initialState, action) => {
     case LOGIN_START:
       return {
         ...state,
-        logingIn: true,
+        loggingIn: true,
         isAuthenticated: false,
         error: null
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
-        logingIn: false,
+        loggingIn: false,
         isAuthenticated: true,
         error: null
       };
     case LOGIN_FAILURE:
       return {
         ...state,
-        logingIn: false,
+        loggingIn: false,
         isAuthenticated: false,
         error: action.payload
       };
     case LOGOUT_START:
       return {
         ...state,
-        logingOut: true,
+        loggingOut: true,
         isAuthenticated: true,
         error: null
       };
     case LOGOUT_SUCCESS:
       return {
         ...state,
-        logingOut: false,
+        loggingOut: false,
         isAuthenticated: false,
         error: null
       };
     case LOGOUT_FAILURE:
       return {
         ...state,
-        logingOut: false,
+        loggingOut: false,
         isAuthenticated: true,
         error: action.payload
       };

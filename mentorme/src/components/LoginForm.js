@@ -1,15 +1,16 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {logUser} from '../actions';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logUser } from "../actions";
+import Loader from "react-loader-spinner";
 
-import './LoginForm.css';
+import "./LoginForm.css";
 
 class LoginForm extends Component {
   state = {
     credentials: {
-      handle: '',
-      password: ''
+      handle: "",
+      password: ""
     },
     errors: {}
   };
@@ -25,24 +26,24 @@ class LoginForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
-    if (this.state.credentials.handle === '') {
+    console.log(this.props)
+    if (this.state.credentials.handle === "") {
       this.setState({
-        errors: {handle: 'Username is required'}
+        errors: { handle: "Username is required" }
       });
       return;
     }
 
-    if (this.state.credentials.password === '') {
+    if (this.state.credentials.password === "") {
       this.setState({
-        errors: {password: 'Password is required'}
+        errors: { password: "Password is required" }
       });
       return;
     }
 
     this.props
       .logUser(this.state.credentials)
-      .then(() => this.props.history.push('/questions'));
+      .then(() => this.props.history.push("/questions"));
   };
   render() {
     return (
@@ -54,7 +55,7 @@ class LoginForm extends Component {
             <div className="form-item">
               <label htmlFor="username">Username</label>
               <input
-                className={`${this.state.errors.handle ? 'is-invalid' : ''}`}
+                className={`${this.state.errors.handle ? "is-invalid" : ""}`}
                 onChange={this.onChange}
                 type="text"
                 name="handle"
@@ -71,7 +72,7 @@ class LoginForm extends Component {
             <div className="form-item">
               <label htmlFor="password">Password</label>
               <input
-                className={`${this.state.errors.password ? 'is-invalid' : ''}`}
+                className={`${this.state.errors.password ? "is-invalid" : ""}`}
                 onChange={this.onChange}
                 type="password"
                 name="password"
@@ -85,7 +86,19 @@ class LoginForm extends Component {
                 </p>
               )}
             </div>
-            <input className="btn-sign-in" type="submit" value="SIGN IN" />
+            <button className="btn-sign-in" type="submit">
+              {" "}
+              {this.props.isLoading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#000000"
+                  height="20"
+                  width="30"
+                />
+              ) : (
+                `SIGN IN`
+              )}{" "}
+            </button>
             <div className="register">
               <p>Don't have an account?</p>
               <Link to="/register">REGISTER</Link>
@@ -97,4 +110,8 @@ class LoginForm extends Component {
   }
 }
 
-export default connect(null, {logUser})(LoginForm);
+const mapStateToProps = state => ({
+  isLoading: state.authReducer.loggingIn
+});
+
+export default connect(mapStateToProps, { logUser })(LoginForm);
