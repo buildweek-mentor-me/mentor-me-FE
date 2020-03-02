@@ -1,16 +1,17 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {regUser} from '../actions';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { regUser } from "../actions";
+import Loader from "react-loader-spinner";
 
-import './LoginForm.css';
+import "./LoginForm.css";
 
 class RegisterForm extends Component {
   state = {
     credentials: {
-      handle: '',
-      email: '',
-      password: ''
+      handle: "",
+      email: "",
+      password: ""
     },
     errors: {}
   };
@@ -28,30 +29,30 @@ class RegisterForm extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    if (this.state.credentials.handle === '') {
+    if (this.state.credentials.handle === "") {
       this.setState({
-        errors: {handle: 'Username is required'}
+        errors: { handle: "Username is required" }
       });
       return;
     }
 
-    if (this.state.credentials.email === '') {
+    if (this.state.credentials.email === "") {
       this.setState({
-        errors: {email: 'Email is required'}
+        errors: { email: "Email is required" }
       });
       return;
     }
 
-    if (this.state.credentials.password === '') {
+    if (this.state.credentials.password === "") {
       this.setState({
-        errors: {password: 'Password is required'}
+        errors: { password: "Password is required" }
       });
       return;
     }
 
     this.props.regUser(this.state.credentials);
     setTimeout(() => {
-      this.props.history.push('/');
+      this.props.history.push("/");
     }, 1000);
   };
   render() {
@@ -64,7 +65,7 @@ class RegisterForm extends Component {
             <div className="form-item">
               <label htmlFor="handle">Username</label>
               <input
-                className={`${this.state.errors.handle ? 'is-invalid' : ''}`}
+                className={`${this.state.errors.handle ? "is-invalid" : ""}`}
                 onChange={this.onChange}
                 type="text"
                 name="handle"
@@ -81,7 +82,7 @@ class RegisterForm extends Component {
             <div className="form-item">
               <label htmlFor="email">Email</label>
               <input
-                className={`${this.state.errors.email ? 'is-invalid' : ''}`}
+                className={`${this.state.errors.email ? "is-invalid" : ""}`}
                 onChange={this.onChange}
                 type="email"
                 name="email"
@@ -96,7 +97,7 @@ class RegisterForm extends Component {
             <div className="form-item">
               <label htmlFor="password">Password</label>
               <input
-                className={`${this.state.errors.password ? 'is-invalid' : ''}`}
+                className={`${this.state.errors.password ? "is-invalid" : ""}`}
                 onChange={this.onChange}
                 type="password"
                 name="password"
@@ -110,7 +111,19 @@ class RegisterForm extends Component {
                 </p>
               )}
             </div>
-            <input className="btn-sign-in" type="submit" value="REGISTER" />
+            <button className="btn-sign-in" type="submit">
+              {" "}
+              {this.props.isLoading ? (
+                <Loader
+                  type="BallTriangle"
+                  color="#000000"
+                  height="20"
+                  width="30"
+                />
+              ) : (
+                `REGISTER`
+              )}{" "}
+            </button>
             <div className="register">
               <p>Already have an account?</p>
               <Link to="/">SIGNIN</Link>
@@ -122,7 +135,8 @@ class RegisterForm extends Component {
   }
 }
 
-export default connect(
-  null,
-  {regUser}
-)(RegisterForm);
+const mapStateToProps = state => ({
+  isLoading: state.authReducer.registering
+});
+
+export default connect(mapStateToProps, { regUser })(RegisterForm);

@@ -26,7 +26,6 @@ class LoginForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.props)
     if (this.state.credentials.handle === "") {
       this.setState({
         errors: { handle: "Username is required" }
