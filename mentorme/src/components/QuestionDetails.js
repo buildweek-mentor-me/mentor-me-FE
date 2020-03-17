@@ -30,7 +30,6 @@ class QuestionDetails extends Component {
   };
 
   render() {
-    console.log(this.props.questions);
     const question = this.props.questions.find(
       q => `${q.id}` === this.props.match.params.id
     );

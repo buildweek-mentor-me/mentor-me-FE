@@ -1,15 +1,12 @@
-import React, {Fragment} from 'react';
-import {connect} from 'react-redux';
-import {fetchQuestions} from '../actions/';
-import Question from './Question';
-import Header from './Header';
+import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import { fetchQuestions } from "../actions/";
+import Question from "./Question";
+import Header from "./Header";
 
-import './QuestionsList.css';
+import "./QuestionsList.css";
 
 class QuestionsList extends React.Component {
-  componentWillMount() {
-    this.props.fetchQuestions();
-  }
   componentDidMount() {
     this.props.fetchQuestions();
   }
@@ -42,16 +39,13 @@ class QuestionsList extends React.Component {
   }
 }
 
-const mapStateToProps = ({questionsReducer, authReducer}) => {
+const mapStateToProps = ({ questionsReducer, authReducer }) => {
   return {
-    questions: questionsReducer.questions,
+    questions: questionsReducer.questions.sort((a,b) => b.likes - a.likes),
     isFetching: questionsReducer.isFetching,
     filteredQuestions: questionsReducer.filteredQuestions,
     isAuthenticated: authReducer.isAuthenticated
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {fetchQuestions}
-)(QuestionsList);
+export default connect(mapStateToProps, { fetchQuestions })(QuestionsList);

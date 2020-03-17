@@ -1,16 +1,28 @@
-import React, { Fragment } from "react";
+import React from "react";
 import moment from "moment";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteQuestion, upvote } from "../actions";
+import { fetchQuestions } from "../actions/";
 
 import "./Question.css";
 
 class Question extends React.Component {
+  onUpvote = e => {
+    e.preventDefault();
+    this.props.upvote(this.props.question.id);
+    setTimeout(this.props.fetchQuestions(), 2000);
+  };
+
   render() {
     return (
       <div className="question-hub">
-          <i onClick={() => {this.props.upvote(this.props.question.id)}} class="fas fa-chevron-circle-up fa-2x" />
+        <div className="upvote">
+          <i onClick={this.onUpvote} class="fas fa-chevron-circle-up fa-2x" />
+
+          <div className="like-count">{this.props.question.likes}</div>
+        </div>
+
         <Link to={`/questions/${this.props.question.id}`}>
           <div className="Question">
             <div className="header">
@@ -36,7 +48,8 @@ const mapStateToProps = ({ questionsReducer }) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { deleteQuestion, upvote }
-)(Question);
+export default connect(mapStateToProps, {
+  deleteQuestion,
+  upvote,
+  fetchQuestions
+})(Question);

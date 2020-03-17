@@ -104,7 +104,9 @@ export const questionsReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredQuestions: state.questions.filter(question => {
-          return question.title.toLowerCase().includes(action.payload.toLowerCase());
+          return question.title
+            .toLowerCase()
+            .includes(action.payload.toLowerCase());
         })
       };
     case EDIT_QUESTION_START:
@@ -131,7 +133,8 @@ export const questionsReducer = (state = initialState, action) => {
       };
     case UPVOTE_START:
       return {
-        ...state
+        ...state,
+        questions: [...state.questions]
       };
     case UPVOTE_SUCCESS:
       return {
